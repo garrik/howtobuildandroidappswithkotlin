@@ -8,7 +8,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/first_name_wrapper"
-        style="@style/text_input_greeting"
+        style="@style/Widget.HowtoBuildAppsWithKotlin.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/first_name_text"
@@ -27,7 +27,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/last_name_wrapper"
-        style="@style/text_input_greeting"
+        style="@style/Widget.HowtoBuildAppsWithKotlin.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/last_name_text"
@@ -57,7 +57,7 @@
     <TextView
         android:id="@+id/greeting_display"
         android:layout_width="match_parent"
-        style="@style/greeting_display"
+        style="@style/Widget.HowtoBuildAppsWithKotlin.GreetingDisplay"
         app:layout_constraintTop_toBottomOf="@id/enter_button"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
