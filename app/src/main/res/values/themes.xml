@@ -13,4 +13,21 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Widget.HowToBuildAndroidAppsWithKotlin.TextView.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline5</item>
+    </style>
+
+    <style name="Widget.HowToBuildAndroidAppsWithKotlin.OutlinedBox.Color" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="button_create_color">
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="TextAppearance.HowToBuildAndroidAppsWithKotlin.ColorPanel" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:layout_margin">8dp</item>
+    </style>
 </resources>

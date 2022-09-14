@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">HowToBuildAndroidAppsWithKotlin</string>
+    <string name="app_name">Colors</string>
+    <string name="create_rgb_colors">Create RGB colors</string>
+    <string name="red_value">red value</string>
+    <string name="green_value">green value</string>
+    <string name="blue_value">blue value</string>
+    <string name="create_rgb_color">create rgb color</string>
+    <string name="create_color_display_panel">Create color display panel</string>
+    <string name="create_rgb_colors_summary">Enter two hex chars between 0-9 A-F for each channel</string>
 </resources>

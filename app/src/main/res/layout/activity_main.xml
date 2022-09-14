@@ -7,12 +7,110 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/title_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/create_rgb_colors"
+        style="@style/Widget.HowToBuildAndroidAppsWithKotlin.TextView.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/briefing_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_rgb_colors_summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/red_channel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/red_value"
+        style="@style/Widget.HowToBuildAndroidAppsWithKotlin.OutlinedBox.Color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/briefing_view">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/red_channel_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:maxLength="2"
+            android:digits="0123456789abcdefABCDEF"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/green_channel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/green_value"
+        style="@style/Widget.HowToBuildAndroidAppsWithKotlin.OutlinedBox.Color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/red_channel_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/green_channel_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:maxLength="2"
+            android:digits="0123456789abcdefABCDEF"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/blue_channel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/blue_value"
+        style="@style/Widget.HowToBuildAndroidAppsWithKotlin.OutlinedBox.Color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/green_channel_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/blue_channel_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:maxLength="2"
+            android:digits="0123456789abcdefABCDEF"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/create_color"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_rgb_color"
+        style="@style/button_create_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blue_channel_layout"/>
+
+    <TextView
+        android:id="@+id/color_panel_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_color_display_panel"
+        android:padding="10dp"
+        android:gravity="center"
+        style="@style/TextAppearance.HowToBuildAndroidAppsWithKotlin.ColorPanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_color">
+
+    </TextView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
