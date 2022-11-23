@@ -29,6 +29,11 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val starSignId = arguments?.getInt(STAR_SIGN_ID, 0) ?: 0
+        setStarSignData(starSignId)
+    }
+
     fun setStarSignData(starSignId: Int) {
 
         //Some text below should in production be string resources, done as hardcoded text here for simplicity
@@ -96,6 +101,16 @@ class DetailFragment : Fragment() {
             else -> {
                 Toast.makeText(context, getString(R.string.unknown_star_sign), Toast.LENGTH_LONG)
                     .show();
+            }
+        }
+    }
+
+    companion object {
+        private const val STAR_SIGN_ID = "STAR_SIGN_ID"
+
+        fun newInstance(starSignId: Int) = DetailFragment().apply {
+            arguments = Bundle().apply {
+                putInt(STAR_SIGN_ID, starSignId)
             }
         }
     }

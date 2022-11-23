@@ -23,5 +23,12 @@ class MainActivity : AppCompatActivity(), StarSignListener {
     }
 
     override fun onSelected(id: Int) {
+        findViewById<FragmentContainerView>(R.id.fragment_container)?.let { frameLayout ->
+            val detailFragment = DetailFragment.newInstance(id)
+            supportFragmentManager.beginTransaction()
+                .replace(frameLayout.id, detailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 }
