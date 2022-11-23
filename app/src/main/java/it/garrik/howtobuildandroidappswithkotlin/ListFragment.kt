@@ -6,23 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListFragment : Fragment(), View.OnClickListener {
-    private lateinit var starSignListener: StarSignListener
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is StarSignListener) {
-            starSignListener = context
-        } else {
-            throw RuntimeException("Must implement StarSignListener")
-        }
-    }
+class ListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,13 +39,16 @@ class ListFragment : Fragment(), View.OnClickListener {
             view.findViewById(R.id.sagittarius),
             view.findViewById(R.id.capricorn)
         )
-        starSigns.forEach {
-            it.setOnClickListener(this)
-        }
-    }
-    override fun onClick(v: View?) {
-        v?.let { starSign ->
-            starSignListener.onSelected(starSign.id)
+
+        starSigns.forEach { starSign ->
+            val fragmentBundle = Bundle()
+            fragmentBundle.putInt(STAR_SIGN_ID, starSign.id)
+            starSign.setOnClickListener(
+                Navigation.createNavigateOnClickListener(
+                    R.id.star_sign_id_action,
+                    fragmentBundle
+                )
+            )
         }
     }
 }

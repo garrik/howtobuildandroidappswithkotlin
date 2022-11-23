@@ -106,8 +106,6 @@ class DetailFragment : Fragment() {
     }
 
     companion object {
-        private const val STAR_SIGN_ID = "STAR_SIGN_ID"
-
         fun newInstance(starSignId: Int) = DetailFragment().apply {
             arguments = Bundle().apply {
                 putInt(STAR_SIGN_ID, starSignId)

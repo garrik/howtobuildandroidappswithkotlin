@@ -3,9 +3,7 @@ package it.garrik.howtobuildandroidappswithkotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-interface StarSignListener {
-    fun onSelected(id: Int)
-}
+const val STAR_SIGN_ID = "STAR_SIGN_ID"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
