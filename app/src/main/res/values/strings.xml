@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cat Agent Profile</string>
+    <string name="the_cat_image">The cat image</string>
 </resources>

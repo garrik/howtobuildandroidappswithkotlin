@@ -3,6 +3,7 @@ package it.garrik.howtobuildandroidappswithkotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 
 import it.garrik.howtobuildandroidappswithkotlin.api.TheCatApiService
@@ -18,6 +19,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class MainActivity : AppCompatActivity() {
     private val serverResponseView: TextView
             by lazy { findViewById(R.id.main_server_response) }
+    private val profileImageView: ImageView
+            by lazy { findViewById(R.id.main_profile_image) }
+    private val imageLoader: ImageLoader by lazy { GlideImageLoader(this) }
 
     private val retrofit by lazy {
         Retrofit.Builder()
@@ -48,8 +52,14 @@ class MainActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val imageResults = response.body()
-                    val firstImageUrl = imageResults?.firstOrNull()?.imageUrl ?: "No URL"
+                    val firstImageUrl = imageResults?.firstOrNull()?.imageUrl ?: ""
                     serverResponseView.text = "Image URL: $firstImageUrl"
+
+                    if (!firstImageUrl.isBlank()) {
+                        imageLoader.loadImage(firstImageUrl, profileImageView)
+                    } else {
+                        Log.d("MainActivity", "Missing image URL")
+                    }
                 } else {
                     Log.e(
                         "MainActivity",
