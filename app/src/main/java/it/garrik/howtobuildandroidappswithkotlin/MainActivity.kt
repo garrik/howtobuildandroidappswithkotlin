@@ -17,8 +17,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
-    private val serverResponseView: TextView
-            by lazy { findViewById(R.id.main_server_response) }
+    private val agentBreedView: TextView
+            by lazy { findViewById(R.id.main_agent_breed_value) }
     private val profileImageView: ImageView
             by lazy { findViewById(R.id.main_profile_image) }
     private val imageLoader: ImageLoader by lazy { GlideImageLoader(this) }
@@ -53,13 +53,14 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val imageResults = response.body()
                     val firstImageUrl = imageResults?.firstOrNull()?.imageUrl ?: ""
-                    serverResponseView.text = "Image URL: $firstImageUrl"
 
                     if (!firstImageUrl.isBlank()) {
                         imageLoader.loadImage(firstImageUrl, profileImageView)
                     } else {
                         Log.d("MainActivity", "Missing image URL")
                     }
+                    agentBreedView.text =
+                        imageResults?.firstOrNull()?.breeds?.firstOrNull()?.name ?: "Unknown"
                 } else {
                     Log.e(
                         "MainActivity",
