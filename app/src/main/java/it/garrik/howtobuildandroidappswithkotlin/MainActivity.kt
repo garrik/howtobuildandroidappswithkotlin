@@ -6,12 +6,13 @@ import android.util.Log
 import android.widget.TextView
 
 import it.garrik.howtobuildandroidappswithkotlin.api.TheCatApiService
+import it.garrik.howtobuildandroidappswithkotlin.model.ImageResultData
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl("https://api.thecatapi.com/v1/")
-            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 
@@ -36,17 +37,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun getCatImageResponse() {
         val call = theCatApiService.searchImages(1, "full")
-        call.enqueue(object : Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
+        call.enqueue(object : Callback<List<ImageResultData>> {
+            override fun onFailure(call: Call<List<ImageResultData>>, t: Throwable) {
                 Log.e("MainActivity", "Failed to get search results", t)
             }
 
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<List<ImageResultData>>,
+                response: Response<List<ImageResultData>>
             ) {
                 if (response.isSuccessful) {
-                    serverResponseView.text = response.body()
+                    val imageResults = response.body()
+                    val firstImageUrl = imageResults?.firstOrNull()?.imageUrl ?: "No URL"
+                    serverResponseView.text = "Image URL: $firstImageUrl"
                 } else {
                     Log.e(
                         "MainActivity",
