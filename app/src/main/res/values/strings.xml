@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">HowToBuildAndroidAppsWithKotlin</string>
+    <string name="app_name">Current Weather App</string>
+    <string name="the_weather_image">the weather image</string>
 </resources>
