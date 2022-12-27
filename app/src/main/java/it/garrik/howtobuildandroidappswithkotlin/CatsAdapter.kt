@@ -7,7 +7,8 @@ import it.garrik.howtobuildandroidappswithkotlin.model.CatUiModel
 
 class CatsAdapter(
     private val layoutInflater: LayoutInflater,
-    private val imageLoader: ImageLoader
+    private val imageLoader: ImageLoader,
+    private val onClickListener: OnClickListener
 ) : RecyclerView.Adapter<CatViewHolder>() {
     private val catsData = mutableListOf<CatUiModel>()
 
@@ -22,10 +23,17 @@ class CatsAdapter(
     ): CatViewHolder {
         val view = layoutInflater.inflate(R.layout.item_cat,
         parent, false)
-        return CatViewHolder(view, imageLoader)
+        return CatViewHolder(view, imageLoader, object: CatViewHolder.OnClickListener {
+            override fun onClick(catData: CatUiModel) =
+                onClickListener.onItemClick(catData)
+        })
     }
     override fun getItemCount() = catsData.size
     override fun onBindViewHolder(holder: CatViewHolder, position: Int) {
         holder.bindData(catsData[position])
+    }
+
+    interface OnClickListener {
+        fun onItemClick(catData: CatUiModel)
     }
 }

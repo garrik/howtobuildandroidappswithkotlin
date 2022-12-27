@@ -2,6 +2,7 @@ package it.garrik.howtobuildandroidappswithkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.garrik.howtobuildandroidappswithkotlin.model.CatBreed
@@ -12,7 +13,14 @@ class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView
         by lazy { findViewById(R.id.recycler_view) }
     private val catsAdapter
-        by lazy { CatsAdapter(layoutInflater, GlideImageLoader(this)) }
+        by lazy { CatsAdapter(
+            layoutInflater,
+            GlideImageLoader(this),
+            object : CatsAdapter.OnClickListener {
+                override fun onItemClick(catData: CatUiModel) =
+                    showSelectionDialog(catData)
+            })
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,5 +53,13 @@ class MainActivity : AppCompatActivity() {
                )
             )
         )
+    }
+
+    private fun showSelectionDialog(catData: CatUiModel) {
+        AlertDialog.Builder(this)
+        .setTitle("Agent Selected")
+        .setMessage("You have selected agent ${catData.name}")
+        .setPositiveButton("OK") { _, _ -> }
+        .show()
     }
 }
