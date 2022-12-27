@@ -3,6 +3,7 @@ package it.garrik.howtobuildandroidappswithkotlin
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.garrik.howtobuildandroidappswithkotlin.model.CatBreed
@@ -29,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = listItemAdapter
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val itemTouchHelper = ItemTouchHelper(listItemAdapter.swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+
         listItemAdapter.setData(
             listOf(
                 ListItemUiModel.Title("Sleeper Agents"),
