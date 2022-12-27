@@ -1,14 +1,15 @@
-package it.garrik.howtobuildandroidappswithkotlin
+package it.garrik.howtobuildandroidappswithkotlin.viewholder
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import androidx.recyclerview.widget.RecyclerView
-
+import it.garrik.howtobuildandroidappswithkotlin.ImageLoader
+import it.garrik.howtobuildandroidappswithkotlin.R
 import it.garrik.howtobuildandroidappswithkotlin.model.CatBreed
 import it.garrik.howtobuildandroidappswithkotlin.model.CatUiModel
 import it.garrik.howtobuildandroidappswithkotlin.model.Gender
+import it.garrik.howtobuildandroidappswithkotlin.model.ListItemUiModel
 
 private val FEMALE_SYMBOL by lazy {
     HtmlCompat.fromHtml("&#9793;", HtmlCompat.FROM_HTML_MODE_LEGACY)
@@ -22,19 +23,23 @@ class CatViewHolder(
     private val containerView: View,
     private val imageLoader: ImageLoader,
     private val onClickListener: OnClickListener
-) : RecyclerView.ViewHolder(containerView) {
-    private val catPhotoView: ImageView
-        by lazy { containerView.findViewById(R.id. item_cat_photo) }
-    private val catNameView: TextView
-        by lazy { containerView.findViewById(R.id. item_cat_name) }
+) : ListItemViewHolder(containerView) {
+    private val catBiographyView: TextView
+            by lazy { containerView.findViewById(R.id.item_cat_biography) }
     private val catBreedView: TextView
-        by lazy { containerView.findViewById(R.id. item_cat_breed) }
-    private val catBioView: TextView
-        by lazy { containerView.findViewById(R.id. item_cat_biography) }
+            by lazy { containerView.findViewById(R.id.item_cat_breed) }
     private val catGenderView: TextView
-        by lazy { containerView.findViewById(R.id. item_cat_gender) }
+            by lazy { containerView.findViewById(R.id.item_cat_gender) }
+    private val catNameView: TextView
+            by lazy { containerView.findViewById(R.id.item_cat_name) }
+    private val catPhotoView: ImageView
+            by lazy { containerView.findViewById(R.id.item_cat_photo) }
 
-    fun bindData(catData: CatUiModel) {
+    override fun bindData(listItem: ListItemUiModel) {
+        require(listItem is ListItemUiModel.Cat) {
+            "Expected ListItemUiModel.Cat"
+        }
+        val catData = listItem.data
         containerView.setOnClickListener { onClickListener.onClick(catData) }
         imageLoader.loadImage(catData.imageUrl, catPhotoView)
         catNameView.text = catData.name
@@ -43,7 +48,7 @@ class CatViewHolder(
             CatBreed.BalineseJavanese -> "Balinese-Javanese"
             CatBreed.ExoticShorthair -> "Exotic Shorthair"
         }
-        catBioView.text = catData.biography
+        catBiographyView.text = catData.biography
         catGenderView.text = when (catData.gender) {
             Gender.Female -> FEMALE_SYMBOL
             Gender.Male -> MALE_SYMBOL
