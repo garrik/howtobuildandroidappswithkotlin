@@ -33,6 +33,11 @@ class ListItemAdapter(
         notifyItemRemoved(position)
     }
 
+    fun addItem(position: Int, item: ListItemUiModel) {
+        listData.add(position, item)
+        notifyItemInserted(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         VIEW_TYPE_TITLE -> {
             val view = layoutInflater.inflate(R.layout.item_title, parent, false)

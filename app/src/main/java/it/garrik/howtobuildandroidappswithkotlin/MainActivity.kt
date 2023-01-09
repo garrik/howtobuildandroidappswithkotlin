@@ -1,6 +1,7 @@
 package it.garrik.howtobuildandroidappswithkotlin
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -14,6 +15,8 @@ import it.garrik.howtobuildandroidappswithkotlin.model.ListItemUiModel
 class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView
             by lazy { findViewById(R.id.recycler_view) }
+    private val addItemButton: View
+            by lazy { findViewById(R.id.main_add_item_button) }
     private val listItemAdapter by lazy {
         ListItemAdapter(
             layoutInflater,
@@ -32,6 +35,20 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val itemTouchHelper = ItemTouchHelper(listItemAdapter.swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+        addItemButton.setOnClickListener {
+            listItemAdapter.addItem(
+                1,
+                ListItemUiModel.Cat(
+                    CatUiModel(
+                        Gender.Female,
+                        CatBreed.BalineseJavanese,
+                        "Anonymous",
+                        "Unknown",
+                        "https://cdn2.thecatapi.com/images/zJkeHza2K.jpg"
+                    )
+                )
+            )
+        }
 
         listItemAdapter.setData(
             listOf(
