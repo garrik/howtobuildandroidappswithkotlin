@@ -2,6 +2,6 @@ package it.garrik.howtobuildandroidappswithkotlin
 
 class Adder {
     fun sum(n: Int): Long {
-        return (n * (n.toLong() + 1)) / 2
+        return if (n > 0) (n * (n.toLong() + 1)) / 2 else -1
     }
 }
