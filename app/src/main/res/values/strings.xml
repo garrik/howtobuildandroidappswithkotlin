@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HowToBuildAndroidAppsWithKotlin</string>
+    <string name="press_me">Press me</string>
+    <string name="opened_after_x_seconds">Opened after %d seconds</string>
 </resources>
