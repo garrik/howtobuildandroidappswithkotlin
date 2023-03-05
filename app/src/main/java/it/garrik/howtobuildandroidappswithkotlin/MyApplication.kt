@@ -4,8 +4,12 @@ import android.app.Application
 import androidx.test.espresso.idling.CountingIdlingResource
 import java.util.*
 
-class MyApplication : Application() {
+open class MyApplication : Application() {
     val countingIdlingResource = CountingIdlingResource("Timer resource")
-    val randomizer = Randomizer(Random())
-    val synchronizer = Synchronizer(randomizer, Timer(), countingIdlingResource)
+    lateinit var synchronizer: Synchronizer
+    override fun onCreate() {
+        super.onCreate()
+        synchronizer = Synchronizer(createRandomizer(), Timer(), countingIdlingResource)
+    }
+    open fun createRandomizer() = Randomizer(Random())
 }

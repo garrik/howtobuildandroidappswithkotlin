@@ -2,8 +2,8 @@ package it.garrik.howtobuildandroidappswithkotlin
 
 import java.util.*
 
-class Randomizer(private val random: Random) {
-    fun getTimeToWait(): Int {
+open class Randomizer(private val random: Random) {
+    open fun getTimeToWait(): Int {
         return random.nextInt(5) + 1
     }
 }
