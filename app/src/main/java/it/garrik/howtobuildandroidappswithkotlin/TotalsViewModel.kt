@@ -1,11 +1,18 @@
 package it.garrik.howtobuildandroidappswithkotlin
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class TotalsViewModel : ViewModel() {
-    var total = 0
-    fun increaseTotal(): Int {
-        total++
+    private val total = MutableLiveData<Int>()
+    init {
+        total.postValue(0)
+    }
+    fun increaseTotal() {
+        total.postValue((total.value ?: 0) + 1)
+    }
+    fun getTotal(): LiveData<Int> {
         return total
     }
 }
