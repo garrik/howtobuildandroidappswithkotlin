@@ -23,7 +23,7 @@ class SplitFragmentOne : Fragment() {
     }
 
     private fun prepareViewModel() {
-        val totalsViewModel = ViewModelProvider(this).get(TotalsViewModel::class.java)
+        val totalsViewModel = ViewModelProvider(requireActivity()).get(TotalsViewModel::class.java)
         updateText(totalsViewModel.total)
         view?.findViewById<Button>(R.id.fragment_split_one_button)?.setOnClickListener {
             updateText(totalsViewModel.increaseTotal())
