@@ -10,11 +10,13 @@
         android:name="it.garrik.howtobuildandroidappswithkotlin.SplitFragmentOne"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_split_one" />
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/activity_fragment_split_2"
         android:name="it.garrik.howtobuildandroidappswithkotlin.SplitFragmentTwo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_split_two" />
 </LinearLayout>
